@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br>
+<div class='row container fw-semibold'>
+    <div class='col-md-6'>
+        <h4>Thông tin cá nhân</h4>
+        <p>Tên: {{student_detail.name}}</p>
+        <p>Giới Tính: {{student_detail.sex}}</p>
+        <p>Ngày Sinh: {{student_detail.date}}</p>
+        <p>Nơi Sinh: {{student_detail.place_of_birth}}</p>
+        <p>Dân Tộc: {{student_detail.ethnic}}</p>
+        <p>Nơi Ở: {{student_detail.location}}</p>
+    </div>
+    <div class="col-md-6">
+        <h4>Thông Tin trường</h4>
+        <p>Tên Trường: {{student_detail.school}}</p>
+        <p>Địa Chỉ: {{student_detail.district}}</p>
+        <p>Mã Học Sinh: {{student_detail.student_id}}</p>
+        <p>Tên Lớp: {{student_detail.stu_class}}</p>
+        <p>Liên Lạc: {{student_detail.phone_number}}</p>
+    </div>
+</div>
+<div>
+    <h4>Thông Tin Điểm Năm Học và Kết Quả Sơ Loại</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Điểm Lớp 1</th>
+                <th scope="col">Điểm Lớp 2</th>
+                <th scope="col">Điểm Lớp 3</th>
+                <th scope="col">Điểm Lớp 4</th>
+                <th scope="col">Điểm Lớp 5</th>
+                <th scope="col">Tổng Điểm 5 Năm</th>
+                <th scope="col">Điểm Cộng</th>
+                <th scope="col">Tổng Điểm</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider fw-semibold">
+            <tr>
+                <td>{{student_detail.total_grade_1}}</th>
+                <td>{{student_detail.total_grade_2}}</td>
+                <td>{{student_detail.total_grade_3}}</td>
+                <td>{{student_detail.total_grade_4}}</td>
+                <td>{{student_detail.total_grade_5}}</td>
+                <td>{{student_detail.total_5_years}}</td>
+                <td>{{student_detail.plus}}</td>
+                <td>{{student_detail.total_all}}</td>
+            </tr>
+        </tbody>
+      </table>
+      <center><h2>Kết Quả: {{student_detail.decripsion}}</h2></center>
+</div>
+
+{% endblock content %}
+
+

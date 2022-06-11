@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='row'>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class='container'>
+            <h1>Search Information you want to find!</h1>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Input Name</label>
+                    <input type="text" class="form-control" name="search_name" id="name">
+                    {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
+                    <label for="id" class="form-label">ID Student</label>
+                    <input type="text" class="form-control" name="search_student_id" id="id">
+                  </div>
+                <br>
+                <input type="submit" class="btn btn-primary" value="Search">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<div>
+    {% if searched_name %}<div>
+        <center>
+            <h1>below is the list</h1>
+            <h4>Click Name To See Detail...</h4>
+        </center>
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Stundent ID</th>
+                    <th scope="col">Place Born</th>
+                    <th scope="col">Total Point</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for n in name %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{% url 'student-detail' id=n.id %} " class="text-decoration-none" style="color: #000;">@ {{n.name}}</a></td>
+                    <td>{{n.sex}}</td>
+                    <td>{{n.student_id}}</td>
+                    <td>{{n.place_of_birth}}</td>
+                    <td>{{n.total_all}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    {% elif search_student_id %}
+    <center>
+        <h1>below is the list</h1>
+        <h4>Click Name To See Detail...</h4>
+    </center>
+    
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Name</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Stundent ID</th>
+                <th scope="col">Place Born</th>
+                <th scope="col">Total Point</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for stu in student_id %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td><a href="{% url 'student-detail' id=stu.id %}" class="text-decoration-none" style="color: #000;">@{{stu.name}}</a></td>
+                <td>{{stu.sex}}</td>
+                <td>{{stu.student_id}}</td>
+                <td>{{stu.place_of_birth}}</td>
+                <td>{{stu.total_all}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+    <center><h1>Search something!</h1></center>
+        
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}

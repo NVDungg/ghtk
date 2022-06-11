@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-md-8">
+        <div class="container">
+                <h1>You Can Import File Here!</h1>
+                <form method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <label for="formFileSm" class="form-label">Insert you excel file here...</label>
+                    <input name="myfile" class="form-control form-control-sm" id="formFileSm" type="file">
+                    {% if messages.error %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for message in messages %}
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %} <br><br>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+{% endblock content %}
