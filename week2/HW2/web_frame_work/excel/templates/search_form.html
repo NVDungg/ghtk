@@ -24,7 +24,38 @@
 </div>
 
 <div>
-    {% if searched_name %}<div>
+
+    <div>
+    {% if searched_name and search_student_id%}
+        <center>
+            <h1>below is the list</h1>
+            <h4>Click Name To See Detail...</h4>
+        </center>
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Stundent ID</th>
+                    <th scope="col">Place Born</th>
+                    <th scope="col">Total Point</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for com in combite %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td><a href="{% url 'student-detail' id=com.id %}" class="text-decoration-none" style="color: #000;">@{{com.name}}</a></td>
+                        <td>{{com.sex}}</td>
+                        <td>{{com.student_id}}</td>
+                        <td>{{com.place_of_birth}}</td>
+                        <td>{{com.total_all}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+    {% elif searched_name %}
         <center>
             <h1>below is the list</h1>
             <h4>Click Name To See Detail...</h4>
@@ -53,39 +84,39 @@
                 {% endfor %}
             </tbody>
           </table>
-    </div>
-    {% elif search_student_id %}
-    <center>
-        <h1>below is the list</h1>
-        <h4>Click Name To See Detail...</h4>
-    </center>
     
-    <table class="table table-success table-striped">
-        <thead>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Name</th>
-                <th scope="col">Sex</th>
-                <th scope="col">Stundent ID</th>
-                <th scope="col">Place Born</th>
-                <th scope="col">Total Point</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            {% for stu in student_id %}
-            <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td><a href="{% url 'student-detail' id=stu.id %}" class="text-decoration-none" style="color: #000;">@{{stu.name}}</a></td>
-                <td>{{stu.sex}}</td>
-                <td>{{stu.student_id}}</td>
-                <td>{{stu.place_of_birth}}</td>
-                <td>{{stu.total_all}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-      </table>
-    {% else %}
-    <center><h1>Search something!</h1></center>
+        {% elif search_student_id %}
+        <center>
+            <h1>below is the list</h1>
+            <h4>Click Name To See Detail...</h4>
+        </center>
+        
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Stundent ID</th>
+                    <th scope="col">Place Born</th>
+                    <th scope="col">Total Point</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for stu in student_id %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{% url 'student-detail' id=stu.id %}" class="text-decoration-none" style="color: #000;">@{{stu.name}}</a></td>
+                    <td>{{stu.sex}}</td>
+                    <td>{{stu.student_id}}</td>
+                    <td>{{stu.place_of_birth}}</td>
+                    <td>{{stu.total_all}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <center><h1>Search something!</h1></center>
         
     </div>
     {% endif %}
