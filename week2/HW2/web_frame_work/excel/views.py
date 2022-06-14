@@ -43,13 +43,17 @@ def search_form(request):
 
         name = Student.objects.filter(name__contains=searched_name)
         student_id = Student.objects.filter(student_id__contains=search_student_id)
-
+        combite = Student.objects.filter(
+            Q(name__contains = searched_name) &             #This search it combite the name and id_student
+            Q(student_id__contains = search_student_id)
+        )
 
         context ={
             "searched_name":searched_name,
             "search_student_id":search_student_id,
             "name":name,
             "student_id":student_id,
+            "combite":combite,
             "student_list":Student.objects.all(),
         }
         return render(request, 'search_form.html',context)
