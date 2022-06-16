@@ -13,10 +13,9 @@ def simple_upload(request):
         new_student = request.FILES['myfile']
 
         if not new_student.name.endswith('xlsx'):
-            messages.error(request, 'You Must Import Excel File!')
+            messages.error(request, 'You Must Import Excel File!') #handle the different file
             return redirect("upload")
-        else:
-            messages.success(request, 'Import Success!')
+
 
         imported_data = dataset.load(new_student.read(), format='xlsx')
         for data in imported_data:
@@ -24,10 +23,15 @@ def simple_upload(request):
                 data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],
                 data[11],data[12],data[13],data[14],data[15],data[16],data[17],data[18],data[19],data[20],
             )
-            value.save()
-            
 
-        #return redirect('student_list')
+            if Student.objects.filter(student_id=data[3]).exists():
+                messages.error(request, 'The Student ID already exists!') #handle the unique id_student
+                return redirect("upload")
+            else:
+                messages.success(request, 'Import Success!')
+                value.save()
+                return redirect("student-list")
+     
     return render(request,'import.html')
 
 def about(request):
