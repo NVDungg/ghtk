@@ -10,7 +10,7 @@ def simple_upload(request):
     if request.method == "POST":
         student_resource = StudentResource()
         dataset = Dataset()
-        new_student = request.FILES['myfile']
+        new_student = request.FILES['myfile']   #must had the form to handle the in vaild errors.
 
         if not new_student.name.endswith('xlsx'):
             messages.error(request, 'You Must Import Excel File!') #handle the different file
