@@ -10,15 +10,9 @@
                     {% csrf_token %}
                     <label for="formFileSm" class="form-label">Insert you excel file here...</label>
                     <input name="myfile" class="form-control form-control-sm" id="formFileSm" type="file">
-                    {% if messages.error %}
+                    {% if messages %}
                         {% for message in messages %}
                         <div class="alert alert-danger" role="alert">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                        {% for message in messages %}
-                        <div class="alert alert-success" role="alert">
                             {{ message }}
                         </div>
                         {% endfor %}
