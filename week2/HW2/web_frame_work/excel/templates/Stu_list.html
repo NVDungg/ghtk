@@ -2,6 +2,13 @@
 
 {% block content %}
 <div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %} <br>
     <h1>below is the list</h1>
     <h4>Click Name To See Detail...</h4>
     <table class="table table-dark table-hover">
