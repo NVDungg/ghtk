@@ -9,7 +9,7 @@
                 <form method="POST" enctype="multipart/form-data" >
                     {% csrf_token %}
                     <label for="formFileSm" class="form-label">Insert you excel file here...</label>
-                    <input name="myfile" class="form-control form-control-sm" id="formFileSm" type="file">
+                    <input name="myfile" class="form-control form-control-sm" id="formFileSm" type="file" required>
                     {% if messages %}   //Messages errors
                         {% for message in messages %}
                         <div class="alert alert-danger" role="alert">
