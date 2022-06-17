@@ -28,9 +28,7 @@ def simple_upload(request):
                 messages.error(request, 'The Student ID already exists!') #handle the unique id_student
                 return redirect("upload")
             else:
-                messages.success(request, 'Import Success!')
                 value.save()
-                return redirect("student-list")
      
     return render(request,'import.html')
 
