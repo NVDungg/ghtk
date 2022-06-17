@@ -29,7 +29,8 @@ def simple_upload(request):
                 return redirect("upload")
             else:
                 value.save()
-     
+        messages.success(request, 'Import Success!')
+        return redirect("student-list")
     return render(request,'import.html')
 
 def about(request):
